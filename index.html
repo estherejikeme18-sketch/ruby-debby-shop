@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruby Debby Fashion Home — Shop Dresses, Bags, Shoes</title>
+<meta name="description" content="Ruby Debby Fashion Home Lagos Nigeria. Dresses, bags, shoes, accessories. Prices in Naira.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topbar">Free delivery in Lagos on orders over N150,000 | WhatsApp: 0803 000 0000</div>
+<header><nav class="nav">
+<div class="logo"><b>Ruby Debby</b><span>Fashion Home</span></div>
+<div class="nav-links">
+<a href="#shop">Shop</a><a href="#about">Designer</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+<button class="btn cart-btn" onclick="toggleCart(true)">Cart <span class="cart-count" id="cartCount">0</span></button>
+</div></nav></header>
+<div class="hero"><div class="hero-inner">
+<div class="eyebrow">Fashion Home - Lagos, Nigeria</div>
+<h1>Clothes &amp; accessories that feel made for you.</h1>
+<p>Dresses, bags, shoes and finishing touches — chosen with care, delivered to your door. Pay on delivery or via transfer.</p>
+<div class="hero-cta"><a href="#shop" class="btn btn-white">Shop the collection</a></div>
+<div class="badges"><span>Pay on delivery</span><span>WhatsApp ordering</span><span>Sizes XS-3XL</span><span>Custom tailoring</span></div>
+</div></div>
+<div class="wrap" id="shop">
+<div class="toolbar">
+<input id="search" placeholder="Search dresses, bags, shoes..." oninput="render()">
+<button class="chip active" onclick="setCat('',this)">All</button>
+<button class="chip" onclick="setCat('Dresses',this)">Dresses</button>
+<button class="chip" onclick="setCat('Bags',this)">Bags</button>
+<button class="chip" onclick="setCat('Shoes',this)">Shoes</button>
+<button class="chip" onclick="setCat('Accessories',this)">Accessories</button>
+<button class="chip" onclick="setCat('Outerwear',this)">Outerwear</button>
+</div>
+<div class="section-title"><h2 id="listTitle">Everything in store</h2><p id="listCount"></p></div>
+<div class="grid" id="grid"></div>
+<div class="two-col" id="about">
+<div class="panel"><h2>Meet the designer</h2>
+<p><b>Ruby Debby</b> is a Lagos-based fashion designer known for bold Ankara prints, elegant Adire pieces and perfectly tailored fits. Every piece is finished by hand in her Surulere studio.</p>
+<p style="margin-top:.6rem">Need custom size or aso-ebi? Message her on WhatsApp — she replies within a day.</p>
+<p style="margin-top:.8rem"><a class="btn" href="https://wa.me/2348030000000?text=Hello%20Ruby%20Debby!%20I%20need%20a%20custom%20outfit" target="_blank">Chat on WhatsApp</a></p></div>
+<div class="panel" id="reviews"><h2>What customers say</h2>
+<div class="testi">"My Adire wrap dress fits like a dream. Compliments all day!"<br><b>— Adaeze O., Lekki</b></div>
+<div class="testi">"Ordered Tuesday, delivered Thursday. The tote is beautiful."<br><b>— Mrs. Bakare, Ikeja</b></div>
+<div class="testi">"Ruby adjusted my blazer until it was perfect. True professional."<br><b>— Funmi A., Abuja</b></div></div>
+</div>
+<div class="two-col" id="contact">
+<div class="panel"><h2>Visit / Contact</h2>
+<p><b>Studio:</b> 12 Allen Avenue, Ikeja, Lagos<br><b>Hours:</b> Mon-Sat, 9am-6pm<br><b>Phone:</b> 0803 000 0000<br><b>Instagram:</b> @rubydebby.fashion<br><b>Email:</b> hello@rubydebby.ng</p></div>
+<div class="panel"><h2>Checkout - cash on delivery</h2>
+<label>Full name</label><input id="cName" placeholder="e.g. Adaeze Okafor">
+<label>Phone / WhatsApp</label><input id="cPhone" placeholder="e.g. 0803 123 4567">
+<label>Delivery address</label><textarea id="cAddr" rows="2" placeholder="Street, area, city"></textarea>
+<button class="btn wa" onclick="checkoutWA()">Order via WhatsApp</button>
+<button class="btn btn-outline" style="margin-top:.5rem" onclick="checkoutDone()">Place order</button>
+<div class="success" id="successBox">Thank you! Your order has been received. Ruby will call you shortly.</div>
+</div>
+</div>
+</div>
+<footer><div class="foot-inner">
+<div><h4>Ruby Debby Fashion Home</h4><a>Dresses, bags, shoes &amp; accessories</a><a>Lagos - Nigeria</a></div>
+<div><h4>Shop</h4><a href="#shop">All products</a><a href="#shop">Dresses</a><a href="#shop">Bags &amp; Shoes</a></div>
+<div><h4>Help</h4><a href="#contact">Delivery info</a><a href="#contact">Size guide XS-3XL</a><a href="#contact">Returns within 7 days</a></div>
+<div><h4>Contact</h4><a>0803 000 0000</a><a>@rubydebby.fashion</a><a>hello@rubydebby.ng</a></div>
+</div>
+<p style="text-align:center;padding:0 1rem 1.4rem;font-size:.8rem">© 2026 Ruby Debby Fashion Home - Made in Lagos</p></footer>
+<div class="overlay" id="overlay" onclick="toggleCart(false)"></div>
+<aside class="drawer" id="drawer">
+<div class="drawer-head"><b>Your cart (<span id="cartN">0</span>)</b><button class="close-x" onclick="toggleCart(false)">X</button></div>
+<div class="drawer-body" id="cartItems"></div>
+<div class="drawer-foot"><p style="display:flex;justify-content:space-between;font-weight:800;margin-bottom:.6rem"><span>Total</span><span id="cartTotal">N0</span></p>
+<p style="font-size:.78rem;color:#666;margin-bottom:.6rem">Delivery N3,000 — FREE over N150,000.</p>
+<button class="btn" style="width:100%" onclick="toggleCart(false);document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Checkout</button></div>
+</aside>
+<div class="modal" id="modal"><div class="modal-box"><button class="close-x" onclick="closeModal()">X</button><div id="modalBody"></div></div></div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
